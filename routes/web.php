@@ -11,10 +11,25 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [
+
+		'uses' => 'FrontEndController@index',
+		'as' => 'index'
+]);
+
+Route::get('/product/{id}', 'FrontEndController@SingleProduct')->name('product.single');
 
 Auth::routes();
+
+Route::get('products/index', 'ProductsController@index')->name('product.index');
+Route::get('products/create', 'ProductsController@create')->name('product.create');
+Route::post('products/store', 'ProductsController@store')->name('product.store');
+Route::get('products/edit\{id}', 'ProductsController@edit')->name('product.edit');
+Route::post('products/update\{id}', 'ProductsController@update')->name('product.update');
+Route::get('products/delete\{id}', 'ProductsController@delete')->name('product.delete');
+
+//shopping cart
+
+Route::post('/cart/add', 'ShoppingController@add_cart')->name('cart.add');
 
 Route::get('/home', 'HomeController@index')->name('home');
