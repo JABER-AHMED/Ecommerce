@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('app/css/swiper.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('app/css/primary-menu.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('app/css/magnific-popup.css')}}">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
     <!--Styles for RTL-->
 
@@ -43,16 +44,18 @@
 
                     <a href="#" class="js-cart-animate">
                         <i class="seoicon-basket"></i>
-                        <span class="cart-count">0</span>
+                        <span class="cart-count">{{Cart::content()->count()}}</span>
                     </a>
 
                     <div class="cart-popup-wrap">
                         <div class="popup-cart">
-                            <h4 class="title-cart">No products in the cart!</h4>
-                            <p class="subtitle">Please make your choice.</p>
-                            <div class="btn btn-small btn--dark">
-                                <span class="text">view all catalog</span>
-                            </div>
+                            <h4 class="title-cart align-center">${{Cart::total()}}</h4>
+                            <br>
+                            <a href="/cart">
+                                <div class="btn btn-small btn--dark">
+                                    <span class="text">view cart</span>
+                                </div>
+                            </a>
                         </div>
                     </div>
 
@@ -71,7 +74,7 @@
         <div class="row pt120">
             <div class="col-lg-8 col-lg-offset-2">
                 <div class="heading align-center mb60">
-                    <h4 class="h1 heading-title">Udemy E-commerce tutorial</h4>
+                    <h4 class="h1 heading-title">Best Online Book Store</h4>
                     <p class="heading-text">Buy books, and we ship to you.
                     </p>
                 </div>
@@ -109,6 +112,17 @@
 <script src="{{asset('app/js/velocity.min.js')}}"></script>
 <script src="{{asset('app/js/ScrollMagic.min.js')}}"></script>
 <script src="{{asset('app/js/animation.velocity.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<script>
+    
+    @if (Session::has('success')) 
+
+        toastr.success('{{ Session::get('success') }}');
+
+    @endif
+
+</script>
 
 <!-- ...end JS Script -->
 
